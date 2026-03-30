@@ -1,6 +1,6 @@
-function a1(...args) {
+export function a1(...args) {
    console.log(args, "a1");
 }
-function a2(...args) {
+export function a2(...args) {
    console.log(args, "a2");
 }
