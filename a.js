@@ -1,2 +1,2 @@
-console.log('123');
-console.log('123');
+function a1() {}
+function a2() {}
