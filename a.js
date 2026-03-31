@@ -5,3 +5,4 @@ export function a2(...args) {
    console.log(args, "a2");
 }
 console.log(11);
+console.log('ee');
