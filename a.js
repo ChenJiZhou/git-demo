@@ -4,3 +4,4 @@ export function a1(...args) {
 export function a2(...args) {
    console.log(args, "a2");
 }
+console.log(11);
