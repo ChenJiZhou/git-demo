@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  actions: read
 
 jobs:
   create-release:
@@ -17,13 +16,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }} (${{ github.event.head_commit.timestamp }})
-          body: |
-            ## Changes in this Release
-            
-            Please refer to the commit history for details.
-          draft: false
-          prerelease: false
+        run: |
+          gh release create "${{ github.ref_name }}" \
+            --repo "${{ github.repository }}" \
+            --title "Release ${{ github.ref_name }}" \
+            --notes "Release created on $(date '+%Y-%m-%d %H:%M:%S')"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
