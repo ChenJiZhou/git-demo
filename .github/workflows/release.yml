@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   create-release:
@@ -15,14 +16,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Get current date
-        id: date
-        run: echo "date=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
-
       - name: Create Release
-        run: |
-          gh release create ${{ github.ref_name }} \
-            --title "Release ${{ github.ref_name }} - ${{ steps.date.outputs.date }}" \
-            --body "## Changes in this Release\n\nPlease refer to the [CHANGELOG](CHANGELOG.md) for details."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }} (${{ github.event.head_commit.timestamp }})
+          body: |
+            ## Changes in this Release
+            
+            Please refer to the commit history for details.
+          draft: false
+          prerelease: false
