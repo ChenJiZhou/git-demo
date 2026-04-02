@@ -7,3 +7,4 @@ export function a2(...args) {
 console.log(11);
 console.log('ee');
 console.log('ff');
+console.log('修改了a模块bug');
