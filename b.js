@@ -6,3 +6,4 @@ export const b22 = () => {
   console.log("b2");
   console.log("b22");
 }
+console.log('新增b的feature');
